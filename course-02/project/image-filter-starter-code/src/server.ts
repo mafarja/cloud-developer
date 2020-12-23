@@ -29,12 +29,11 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
 //////////
   /**************************************************************************** */
 
-
-  app.get( "/filteredimage", async ( req, res ) => {
+  app.get( "/filteredimage", async ( req:express.Request, res:express.Response ) => {
 
     const {image_url} = req.query
 
-    if (image_url == null) {
+    if (image_url == null || image_url == "") {
       return res.status(404).send({ message: "Image url not included"});
     }
 
@@ -56,7 +55,7 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req:express.Request, res:express.Response ) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
@@ -66,4 +65,4 @@ import {filterImageFromURL, deleteLocalFiles, validateImageUrl} from './util/uti
       console.log( `server running http://localhost:${ port }` );
       console.log( `press CTRL+C to stop server` );
   } );
-})();``
+})();
